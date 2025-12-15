@@ -14,11 +14,25 @@
   "author": "",
   "type": "commonjs",
   "main": "main.js",
+
   "scripts": {
     "start": "electron .",
-    "test": ""
+    "build": "electron-builder"
   },
+
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.0.0"
+  },
+
   "build": {
+    "appId": "com.zapoppy.youtubedownloader",
+    "productName": "YouTube Downloader",
+
+    "win": {
+      "target": "nsis"
+    },
+
     "extraFiles": [
       {
         "from": "resources/${os}",
@@ -27,5 +41,4 @@
       }
     ]
   }
-
 }
