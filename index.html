@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Youtube Downloader</title>
+
+</head>
+<body>
+    <header>
+    <img src="./resources/images/youtube.png">
+    <h1>Youtube Downloader</h1>
+    </header>
+
+    <!-- Input -->
+    <section>
+    <p><input id="url" class="url" type="text" placeholder="Paste youtube link..."/></p>
+    <button id="pickDir" class="dir">Choose Directory</button><br><br>
+    <span id="feedback"></span>
+    <p><input id="name" class="name" type="text" placeholder="Enter title (optional).."/></p>
+    </section>
+    <select id="format">
+        <option value="">Choose File Format</option>
+        <option value="mp4">MP4</option>
+        <option value="mp3">MP3</option>
+        <option value="mkv">MKV</option><br>
+    </select>
+    </div>
+    <!-- Button -->
+    <div>
+    <p><button id="start" class="start">
+        Download
+    </button>
+    </div>
+
+
+
+    <!-- Toast -->
+     <div id="toast"></div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
