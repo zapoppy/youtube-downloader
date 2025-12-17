@@ -1,18 +1,28 @@
 const { exec } = require("child_process");
 const path = require("path");
+const fs = require("fs");
 
 function ytdlpPath() {
-    if (process.platform === "win32") {
-        return path.join(__dirname, "resources", "win", "yt-dlp.exe");
+    const platform = process.platform === "win32" ? "windows" : "linux";
+    const filename = process.platform === "win32" ? "yt-dlp.exe" : "yt-dlp";
+    
+    // Try development path first
+    const devPath = path.join(__dirname, "resources", "bin", platform, filename);
+    if (fs.existsSync(devPath)) {
+        return devPath;
     }
-    return path.join(__dirname, "resources", "linux", "yt-dlp");
+    
+    // If not found, try production path
+    const prodPath = path.join(process.resourcesPath, "bin", platform, filename);
+    return prodPath;
 }
-
 
 function download(url, outputDir, title, format) {
     const ytDlp = ytdlpPath();
-    const cmd = `"${ytDlp}" -t "${format}" "${url}" -P "${outputDir}" -o "${title}"`
-
+    console.log("Using yt-dlp at:", ytDlp); // Debug log
+    
+    const cmd = `"${ytDlp}" -t "${format}" "${url}" -P "${outputDir}" -o "${title}"`;
+    
     exec(cmd, (err, stdout, stderr) => {
         if (err) {
             console.error("yt-dlp failed:", err);
@@ -24,6 +34,5 @@ function download(url, outputDir, title, format) {
         }
     });
 }
-
 
 module.exports = { download };

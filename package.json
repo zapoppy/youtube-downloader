@@ -14,31 +14,35 @@
   "author": "",
   "type": "commonjs",
   "main": "main.js",
-
   "scripts": {
     "start": "electron .",
     "build": "electron-builder"
   },
-
   "devDependencies": {
     "electron": "^30.0.0",
     "electron-builder": "^24.0.0"
   },
-
   "build": {
     "appId": "com.zapoppy.youtubedownloader",
     "productName": "YouTube Downloader",
-
     "win": {
       "target": "nsis"
     },
-
-    "extraFiles": [
+    "extraResources": [
       {
-        "from": "resources/${os}",
-        "to": "Resources/bin",
+        "from": "resources/bin/windows",
+        "to": "bin/windows",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "resources/bin/linux",
+        "to": "bin/linux",
         "filter": ["**/*"]
       }
+    ],
+    "files": [
+      "**/*",
+      "!resources/bin/**/*"
     ]
   }
 }
